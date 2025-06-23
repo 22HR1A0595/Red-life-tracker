@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Life Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #b30000;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #b30000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background-color: #990000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Login to Life Tracker</h2>
+    <input id="username" type="text" placeholder="Username" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    if (localStorage.getItem("lifeTrackerUser")) {
+      window.location.href = "index.html";
+    }
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username && password) {
+        localStorage.setItem("lifeTrackerUser", username);
+        window.location.href = "index.html";
+      } else {
+        alert("Please enter username and password.");
+      }
+    }
+  </script>
+
+</body>
+</html>

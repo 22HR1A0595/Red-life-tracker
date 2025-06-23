@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Life Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      color: red;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav {
+      display: flex;
+      background-color: #eee;
+      padding: 10px 20px;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: #ddd;
+    }
+
+    .content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #b30000;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo-title">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" alt="Logo" class="logo">
+      <div class="title">Red Life Tracker</div>
+    </div>
+  </div>
+ <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="register.html">Become a Donor</a>
+    <a href="donors.html">Donor List</a>
+    <a href="request.html">Need Help?</a>
+    <a href="diet.html">VitalDiet</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" onclick="logout()">Logout</a>
+  </div>
+ <div class="content">
+    <h2>About Red Life Tracker</h2>
+    <p><strong>Red Life Tracker</strong> is a web-based platform designed to connect people in need of blood with voluntary donors in their area.</p>
+
+    <p>Our mission is to create a simple, fast, and reliable system where:
+      <ul>
+        <li>Donors can register their blood group and availability</li>
+        <li>People with low blood levels can receive personalized diet advice</li>
+        <li>Medical emergencies can be responded to more effectively</li>
+      </ul>
+    </p>
+
+    <p>Whether you're here to donate or seek help, Life Tracker is built to serve the community with compassion, accuracy, and speed.</p>
+
+    <p><strong>Together, we can save lives.</strong></p>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("lifeTrackerUser");
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>

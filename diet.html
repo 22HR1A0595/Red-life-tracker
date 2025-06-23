@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VitalDiet - Blood Health Guidance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff4f4;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 24px;
+      color: #b30000;
+      font-weight: bold;
+    }
+
+    .nav {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+    }
+
+    .nav a:hover {
+      background-color: #ddd;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #b30000;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin-bottom: 30px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #b30000;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #990000;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-title">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" class="logo" alt="logo">
+      <div class="title">VitalDiet</div>
+    </div>
+  </div>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="register.html">Become a Donor</a>
+    <a href="donors.html">Donor List</a>
+    <a href="request.html">Need Help?</a>
+    <a href="diet.html">VitalDiet</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="container">
+    <h2>Improve Your Blood Health</h2>
+   <p>
+      If your blood level is low, your body may be lacking essential nutrients. 
+      We recommend you follow a proper diet plan to restore your strength and eligibility for future donation.
+    </p>
+    <ul>
+      <li>🍃 <strong>Iron-rich foods:</strong> Spinach, red meat, tofu, lentils</li>
+      <li>🍊 <strong>Vitamin C sources:</strong> Citrus fruits, bell peppers, guava</li>
+      <li>🥬 <strong>Folate boosters:</strong> Beetroot, legumes, whole grains</li>
+      <li>🥤 <strong>Juices:</strong> Pomegranate, beetroot, carrot juice</li>
+    </ul>
+
+    <p>
+      Want personalized diet advice or reminders? Fill in the form below.
+    </p>
+
+    <form onsubmit="submitDietForm(event)">
+      <label>Name:</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <label>Blood Group:</label>
+      <input type="text" id="bloodGroup" placeholder="Your Blood Group" required>
+      <label>Condition:</label>
+      <textarea id="condition" rows="3" placeholder="Mention any symptoms or health concern..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="successMsg" class="success"></p>
+  </div>
+
+  <script>
+    function submitDietForm(event) {
+      event.preventDefault();
+
+      const entry = {
+        name: document.getElementById("name").value,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        condition: document.getElementById("condition").value
+      };
+
+      let dietUsers = JSON.parse(localStorage.getItem("dietUsers")) || [];
+      dietUsers.push(entry);
+      localStorage.setItem("dietUsers", JSON.stringify(dietUsers));
+
+      document.getElementById("successMsg").textContent = "✅ Thank you! We'll suggest a plan based on your input.";
+      document.getElementById("name").value = "";
+      document.getElementById("bloodGroup").value = "";
+      document.getElementById("condition").value = "";
+    }
+  </script>
+
+</body>
+</html>

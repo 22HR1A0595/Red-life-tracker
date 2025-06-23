@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donor List - Red Life Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 24px;
+      color: red;
+      font-weight: bold;
+    }
+
+    .nav {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+    }
+
+    .nav a:hover {
+      background-color: #ddd;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #b30000;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    .empty {
+      color: gray;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-title">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" class="logo" alt="logo">
+      <div class="title">Red Life Tracker</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="register.html">Become a Donor</a>
+    <a href="donors.html">Donor List</a>
+    <a href="request.html">Need Help?</a>
+    <a href="diet.html">VitalDiet</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="container">
+    <h2>Registered Donors</h2>
+    <div id="donorTableContainer"></div>
+  </div>
+
+  <script>
+    const donorData = JSON.parse(localStorage.getItem("donorsList")) || [];
+    const container = document.getElementById("donorTableContainer");
+
+    if (donorData.length === 0) {
+      container.innerHTML = "<p class='empty'>No donors registered yet.</p>";
+    } else {
+      let tableHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Blood Group</th>
+              <th>Blood Level</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      donorData.forEach(donor => {
+        tableHTML += `
+          <tr>
+            <td>${donor.name}</td>
+            <td>${donor.age}</td>
+            <td>${donor.bloodGroup}</td>
+            <td>${donor.bloodLevel}</td>
+          </tr>
+        `;
+      });
+
+      tableHTML += "</tbody></table>";
+      container.innerHTML = tableHTML;
+    }
+  </script>
+
+</body>
+</html>

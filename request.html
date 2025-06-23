@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blood Request - Life Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff4f4;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 24px;
+      color: red;
+      font-weight: bold;
+    }
+
+    .nav {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+    }
+
+    .nav a:hover {
+      background-color: #ddd;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #b30000;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #b30000;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #990000;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-title">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" class="logo" alt="logo">
+      <div class="title">Red Life Tracker</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="register.html">Become a Donor</a>
+    <a href="donors.html">Donor List</a>
+    <a href="request.html">Need Help?</a>
+    <a href="diet.html">VitalDiet</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="container">
+    <h2>Blood Request Form</h2>
+    <p>If you are in urgent need of blood, please fill out the form below.
+        Our team will match your reguest with available donars and respond quickly. </p>
+    <form onsubmit="submitRequest(event)">
+      <label>Name :</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <label>Age :</label>
+      <input type="number" id="age" placeholder="Your Age" required>
+      <label>Blood Group :</label>
+      <select id="bloodGroup" required>
+        <option value="">Select Required Blood Group</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+      </select>
+      <label>Urgency:</label>
+      <select id="urgency" required>
+        <option value="">Select Urgency</option>
+        <option value="High">High (Immediate)</option>
+        <option value="Medium">Medium (within 24 hrs)</option>
+        <option value="Low">Low (not urgent)</option>
+      </select>
+      <label>Reason :</label>
+      <textarea id="reason" rows="3" placeholder="Reason for request (e.g., surgery, accident)" required></textarea>
+      <label>Contact :</label>
+      <input type="text" id="contact" placeholder="Contact Number or Email" required>
+
+      <button type="submit">Submit Request</button>
+    </form>
+
+    <p id="successMsg" class="success"></p>
+  </div>
+
+  <script>
+    function submitRequest(event) {
+      event.preventDefault();
+
+      const request = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        urgency: document.getElementById("urgency").value,
+        reason: document.getElementById("reason").value,
+        contact: document.getElementById("contact").value
+      };
+
+      let requests = JSON.parse(localStorage.getItem("bloodRequests")) || [];
+      requests.push(request);
+      localStorage.setItem("bloodRequests", JSON.stringify(requests));
+      document.getElementById("successMsg").textContent = "✅ Request submitted successfully! We will contact you soon.";
+      document.getElementById("name").value = "";
+      document.getElementById("age").value = "";
+      document.getElementById("bloodGroup").value = "";
+      document.getElementById("urgency").value = "";
+      document.getElementById("reason").value = "";
+      document.getElementById("contact").value = "";
+    }
+  </script>
+
+</body>
+</html>
