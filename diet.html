@@ -1,173 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>VitalDiet - Blood Health Guidance</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff4f4;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .header {
-      display: flex;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+<title>VitalDiet - Blood Health Guidance</title>
 
-    .logo-title {
-      display: flex;
-      align-items: center;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-    .logo {
-      width: 40px;
-      margin-right: 10px;
-    }
+<style>
 
-    .title {
-      font-size: 24px;
-      color: #b30000;
-      font-weight: bold;
-    }
+body{
+font-family: Arial, sans-serif;
+background-color:#fff4f4;
+margin:0;
+}
 
-    .nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 20px;
-    }
+.header{
+display:flex;
+align-items:center;
+padding:15px 20px;
+background:white;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
 
-    .nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 5px;
-    }
+.logo-title{
+display:flex;
+align-items:center;
+}
 
-    .nav a:hover {
-      background-color: #ddd;
-    }
+.logo{
+width:40px;
+margin-right:10px;
+}
 
-    .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+.title{
+font-size:24px;
+color:#b30000;
+font-weight:bold;
+}
 
-    h2 {
-      color: #b30000;
-    }
+.nav{
+background:#eee;
+padding:10px 20px;
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
 
-    p {
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
+.nav a{
+text-decoration:none;
+color:#333;
+font-weight:bold;
+padding:8px 16px;
+border-radius:5px;
+}
 
-    ul {
-      margin-bottom: 30px;
-    }
+.nav a:hover{
+background:#ddd;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
+.container{
+width:90%;
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
 
-    button {
-      background-color: #b30000;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+h2{
+color:#b30000;
+}
 
-    button:hover {
-      background-color: #990000;
-    }
+p{
+line-height:1.6;
+}
 
-    .success {
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+ul{
+margin-bottom:30px;
+}
+
+label{
+font-weight:bold;
+margin-top:10px;
+display:block;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+button{
+background:#b30000;
+color:white;
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+width:100%;
+}
+
+button:hover{
+background:#990000;
+}
+
+#status{
+margin-top:10px;
+padding:10px;
+border-radius:6px;
+}
+
+.success{
+background:#d4edda;
+color:#155724;
+}
+
+.error{
+background:#f8d7da;
+color:#721c24;
+}
+
+</style>
 </head>
+
 <body>
-  <div class="header">
-    <div class="logo-title">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" class="logo" alt="logo">
-      <div class="title">VitalDiet</div>
-    </div>
-  </div>
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="register.html">Become a Donor</a>
-    <a href="donors.html">Donor List</a>
-    <a href="request.html">Need Help?</a>
-    <a href="diet.html">VitalDiet</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="container">
-    <h2>Improve Your Blood Health</h2>
-   <p>
-      If your blood level is low, your body may be lacking essential nutrients. 
-      We recommend you follow a proper diet plan to restore your strength and eligibility for future donation.
-    </p>
-    <ul>
-      <li>🍃 <strong>Iron-rich foods:</strong> Spinach, red meat, tofu, lentils</li>
-      <li>🍊 <strong>Vitamin C sources:</strong> Citrus fruits, bell peppers, guava</li>
-      <li>🥬 <strong>Folate boosters:</strong> Beetroot, legumes, whole grains</li>
-      <li>🥤 <strong>Juices:</strong> Pomegranate, beetroot, carrot juice</li>
-    </ul>
 
-    <p>
-      Want personalized diet advice or reminders? Fill in the form below.
-    </p>
+<div class="header">
+<div class="logo-title">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q_N9vZXViORiWRyuWDQN9Q8b27SOSChaGw&s" class="logo">
+<div class="title">VitalDiet</div>
+</div>
+</div>
 
-    <form onsubmit="submitDietForm(event)">
-      <label>Name:</label>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <label>Blood Group:</label>
-      <input type="text" id="bloodGroup" placeholder="Your Blood Group" required>
-      <label>Condition:</label>
-      <textarea id="condition" rows="3" placeholder="Mention any symptoms or health concern..." required></textarea>
-      <button type="submit">Submit</button>
-    </form>
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="register.html">Become a Donor</a>
+<a href="donors.html">Donor List</a>
+<a href="request.html">Need Help?</a>
+<a href="diet.html">VitalDiet</a>
+<a href="contact.html">Contact</a>
+</div>
 
-    <p id="successMsg" class="success"></p>
-  </div>
+<div class="container">
 
-  <script>
-    function submitDietForm(event) {
-      event.preventDefault();
+<h2>Improve Your Blood Health</h2>
 
-      const entry = {
-        name: document.getElementById("name").value,
-        bloodGroup: document.getElementById("bloodGroup").value,
-        condition: document.getElementById("condition").value
-      };
+<p>
+If your blood level is low, your body may lack important nutrients.
+Follow these diet tips to improve hemoglobin levels.
+</p>
 
-      let dietUsers = JSON.parse(localStorage.getItem("dietUsers")) || [];
-      dietUsers.push(entry);
-      localStorage.setItem("dietUsers", JSON.stringify(dietUsers));
+<ul>
+<li>🍃 <b>Iron-rich foods:</b> Spinach, lentils, red meat</li>
+<li>🍊 <b>Vitamin C:</b> Oranges, citrus fruits, guava</li>
+<li>🥬 <b>Folate:</b> Beetroot, legumes</li>
+<li>🥤 <b>Juices:</b> Pomegranate, carrot juice</li>
+</ul>
 
-      document.getElementById("successMsg").textContent = "✅ Thank you! We'll suggest a plan based on your input.";
-      document.getElementById("name").value = "";
-      document.getElementById("bloodGroup").value = "";
-      document.getElementById("condition").value = "";
-    }
-  </script>
+<p>Fill the form below to receive a personalized diet plan.</p>
+
+<form id="contact-form">
+
+<label>Name</label>
+<input type="text" name="from_name" required>
+
+<label>Email</label>
+<input type="email" name="to_email" id="email" required>
+
+<label>Blood Group</label>
+<input type="text" id="bloodGroup" placeholder="Example: O+, A-" required>
+
+<label>Blood Level (Hemoglobin g/dL)</label>
+<input type="number" id="bloodLevel" required>
+
+<label>Health Condition</label>
+<textarea name="condition" rows="3"></textarea>
+
+<input type="hidden" name="message" id="message">
+
+<button type="submit">Get Diet Plan</button>
+
+</form>
+
+<div id="status"></div>
+
+</div>
+
+<script>
+
+const PUBLIC_KEY = "IhsT-epfEJs6WZmTk";
+const SERVICE_ID = "service_oqjuygs";
+const TEMPLATE_ID = "template_xd4zmxb";
+
+emailjs.init(PUBLIC_KEY);
+
+const form = document.getElementById("contact-form");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let bloodGroup = document.getElementById("bloodGroup").value;
+let bloodLevel = document.getElementById("bloodLevel").value;
+
+let dietPlan="";
+
+if(bloodLevel < 12){
+
+dietPlan="Your hemoglobin level is low. Eat iron rich foods like spinach, beetroot, lentils, pomegranate and red meat.";
+
+}else{
+
+dietPlan="Your hemoglobin level is normal. Maintain it with fruits, vegetables and balanced diet.";
+
+}
+
+if(bloodGroup=="O+" || bloodGroup=="O-"){
+
+dietPlan+=" Recommended foods for O group: lean meat, fish, broccoli and spinach.";
+
+}
+
+else if(bloodGroup=="A+" || bloodGroup=="A-"){
+
+dietPlan+=" Recommended foods for A group: fruits, vegetables, tofu and legumes.";
+
+}
+
+else if(bloodGroup=="B+" || bloodGroup=="B-"){
+
+dietPlan+=" Recommended foods for B group: dairy products, eggs and green vegetables.";
+
+}
+
+else if(bloodGroup=="AB+" || bloodGroup=="AB-"){
+
+dietPlan+=" Recommended foods for AB group: seafood, dairy and leafy vegetables.";
+
+}
+
+document.getElementById("message").value = dietPlan;
+
+status.textContent="Sending diet plan...";
+status.className="";
+
+emailjs.sendForm(SERVICE_ID,TEMPLATE_ID,form)
+
+.then(function(){
+
+status.textContent="✅ Diet plan sent to "+document.getElementById("email").value;
+status.className="success";
+form.reset();
+
+})
+
+.catch(function(error){
+
+status.textContent="❌ Failed to send email";
+status.className="error";
+
+});
+
+});
+
+</script>
 
 </body>
 </html>
