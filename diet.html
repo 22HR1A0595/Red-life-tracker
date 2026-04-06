@@ -6,8 +6,6 @@
 
 <title>VitalDiet - Blood Health Guidance</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <style>
 
 body{
@@ -74,12 +72,8 @@ h2{
 color:#b30000;
 }
 
-p{
-line-height:1.6;
-}
-
 ul{
-margin-bottom:30px;
+margin-bottom:20px;
 }
 
 label{
@@ -112,20 +106,12 @@ button:hover{
 background:#990000;
 }
 
-#status{
-margin-top:10px;
-padding:10px;
+#result{
+margin-top:15px;
+padding:15px;
 border-radius:6px;
-}
-
-.success{
-background:#d4edda;
-color:#155724;
-}
-
-.error{
-background:#f8d7da;
-color:#721c24;
+background:#e7f3ff;
+color:#003366;
 }
 
 </style>
@@ -153,27 +139,22 @@ color:#721c24;
 
 <h2>Improve Your Blood Health</h2>
 
-<p>
-If your blood level is low, your body may lack important nutrients.
-Follow these diet tips to improve hemoglobin levels.
-</p>
+<p>If your blood level is low, follow these tips:</p>
 
 <ul>
-<li>🍃 <b>Iron-rich foods:</b> Spinach, lentils, red meat</li>
-<li>🍊 <b>Vitamin C:</b> Oranges, citrus fruits, guava</li>
-<li>🥬 <b>Folate:</b> Beetroot, legumes</li>
-<li>🥤 <b>Juices:</b> Pomegranate, carrot juice</li>
+<li>🍃 Iron-rich foods: Spinach, lentils, red meat</li>
+<li>🍊 Vitamin C: Oranges, citrus fruits</li>
+<li>🥬 Folate: Beetroot, legumes</li>
+<li>🥤 Juices: Pomegranate, carrot juice</li>
 </ul>
 
-<p>Fill the form below to receive a personalized diet plan.</p>
-
-<form id="contact-form">
+<form id="dietForm">
 
 <label>Name</label>
-<input type="text" name="from_name" required>
+<input type="text" id="name" required>
 
 <label>Email</label>
-<input type="email" name="to_email" id="email" required>
+<input type="email" id="email" required>
 
 <label>Blood Group</label>
 <input type="text" id="bloodGroup" placeholder="Example: O+, A-" required>
@@ -182,28 +163,20 @@ Follow these diet tips to improve hemoglobin levels.
 <input type="number" id="bloodLevel" required>
 
 <label>Health Condition</label>
-<textarea name="condition" rows="3"></textarea>
-
-<input type="hidden" name="message" id="message">
+<textarea id="condition" rows="3"></textarea>
 
 <button type="submit">Get Diet Plan</button>
 
 </form>
 
-<div id="status"></div>
+<div id="result"></div>
 
 </div>
 
 <script>
 
-const PUBLIC_KEY = "IhsT-epfEJs6WZmTk";
-const SERVICE_ID = "service_oqjuygs";
-const TEMPLATE_ID = "template_xd4zmxb";
-
-emailjs.init(PUBLIC_KEY);
-
-const form = document.getElementById("contact-form");
-const status = document.getElementById("status");
+const form = document.getElementById("dietForm");
+const result = document.getElementById("result");
 
 form.addEventListener("submit", function(e){
 
@@ -212,63 +185,28 @@ e.preventDefault();
 let bloodGroup = document.getElementById("bloodGroup").value;
 let bloodLevel = document.getElementById("bloodLevel").value;
 
-let dietPlan="";
+let dietPlan = "";
 
 if(bloodLevel < 12){
-
-dietPlan="Your hemoglobin level is low. Eat iron rich foods like spinach, beetroot, lentils, pomegranate and red meat.";
-
+dietPlan = "⚠️ Your hemoglobin level is LOW.\nEat iron-rich foods like spinach, beetroot, lentils, pomegranate, and red meat.\n\n";
 }else{
-
-dietPlan="Your hemoglobin level is normal. Maintain it with fruits, vegetables and balanced diet.";
-
+dietPlan = "✅ Your hemoglobin level is NORMAL.\nMaintain it with a balanced diet.\n\n";
 }
 
 if(bloodGroup=="O+" || bloodGroup=="O-"){
-
-dietPlan+=" Recommended foods for O group: lean meat, fish, broccoli and spinach.";
-
+dietPlan += "🥩 O Group: Lean meat, fish, broccoli, spinach.";
 }
-
 else if(bloodGroup=="A+" || bloodGroup=="A-"){
-
-dietPlan+=" Recommended foods for A group: fruits, vegetables, tofu and legumes.";
-
+dietPlan += "🥗 A Group: Fruits, vegetables, tofu, legumes.";
 }
-
 else if(bloodGroup=="B+" || bloodGroup=="B-"){
-
-dietPlan+=" Recommended foods for B group: dairy products, eggs and green vegetables.";
-
+dietPlan += "🥚 B Group: Dairy products, eggs, green vegetables.";
 }
-
 else if(bloodGroup=="AB+" || bloodGroup=="AB-"){
-
-dietPlan+=" Recommended foods for AB group: seafood, dairy and leafy vegetables.";
-
+dietPlan += "🍤 AB Group: Seafood, dairy, leafy vegetables.";
 }
 
-document.getElementById("message").value = dietPlan;
-
-status.textContent="Sending diet plan...";
-status.className="";
-
-emailjs.sendForm(SERVICE_ID,TEMPLATE_ID,form)
-
-.then(function(){
-
-status.textContent="✅ Diet plan sent to "+document.getElementById("email").value;
-status.className="success";
-form.reset();
-
-})
-
-.catch(function(error){
-
-status.textContent="❌ Failed to send email";
-status.className="error";
-
-});
+result.textContent = dietPlan;
 
 });
 
